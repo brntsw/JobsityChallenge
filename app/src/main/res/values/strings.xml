@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JobsityChallenge</string>
+    <string name="general_error">There was an error in the request</string>
 </resources>

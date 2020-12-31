@@ -1,7 +1,8 @@
-package bruno.com.jobsitychallenge
+package bruno.com.jobsitychallenge.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import bruno.com.jobsitychallenge.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
