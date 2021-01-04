@@ -5,3 +5,4 @@ This is the challenge for the Jobsity's Android developer opportunity. The goal 
 - Android Studio 4.1.1
 - Minimum Android OS version 4.4 (API 19)
 - 5.6 mb free space
+- To test the APK, it is located in app > release > app-release.apk
