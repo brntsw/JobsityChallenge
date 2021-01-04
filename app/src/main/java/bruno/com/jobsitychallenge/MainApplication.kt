@@ -2,23 +2,29 @@ package bruno.com.jobsitychallenge
 
 import android.app.Application
 import android.content.Context
+import bruno.com.jobsitychallenge.di.applicationModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class MainApplication : Application() {
 
-    init {
-        instance = this
-    }
+    override fun onCreate() {
+        super.onCreate()
 
-    companion object {
-        private var instance: MainApplication? = null
+        appContext = applicationContext
 
-        fun applicationContext() : Context {
-            return instance!!.applicationContext
+        startKoin {
+            androidLogger()
+            androidContext(this@MainApplication)
+            modules(
+                applicationModule
+            )
         }
     }
 
-    override fun onCreate() {
-        super.onCreate()
+    companion object {
+        lateinit  var appContext: Context
     }
 
 }

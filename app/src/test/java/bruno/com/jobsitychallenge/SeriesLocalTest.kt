@@ -1,10 +1,10 @@
 package bruno.com.jobsitychallenge
 
 import android.util.Log
-import bruno.com.jobsitychallenge.data.EpisodeResponse
+import bruno.com.jobsitychallenge.data.model.EpisodeResponse
 import bruno.com.jobsitychallenge.data.IRequest
-import bruno.com.jobsitychallenge.data.SerieResponse
-import bruno.com.jobsitychallenge.data.SerieSearchResponse
+import bruno.com.jobsitychallenge.data.model.SerieResponse
+import bruno.com.jobsitychallenge.data.model.SerieSearchResponse
 import bruno.com.jobsitychallenge.local.SeriesLocalImpl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
@@ -12,7 +12,6 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.jupiter.api.assertThrows
 
 @ExperimentalCoroutinesApi
 class SeriesLocalTest {

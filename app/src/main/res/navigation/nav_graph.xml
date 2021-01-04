@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/seriesListFragment">
+
+    <fragment
+        android:id="@+id/seriesListFragment"
+        android:name="bruno.com.jobsitychallenge.ui.list.SeriesListFragment"
+        android:label="fragment_series_list"
+        tools:layout="@layout/fragment_series_list" >
+        <action
+            android:id="@+id/action_seriesListFragment_to_serieDetailsFragment"
+            app:destination="@id/serieDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/serieDetailsFragment"
+        android:name="bruno.com.jobsitychallenge.ui.details.SerieDetailsFragment"
+        android:label="fragment_serie_details"
+        tools:layout="@layout/fragment_serie_details" />
+</navigation>

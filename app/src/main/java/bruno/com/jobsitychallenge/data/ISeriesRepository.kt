@@ -1,5 +1,9 @@
 package bruno.com.jobsitychallenge.data
 
+import bruno.com.jobsitychallenge.data.model.EpisodeResponse
+import bruno.com.jobsitychallenge.data.model.SerieResponse
+import bruno.com.jobsitychallenge.data.model.SerieSearchResponse
+
 interface ISeriesRepository {
 
     suspend fun getSeries(request: IRequest<List<SerieResponse>>)

@@ -8,7 +8,7 @@ class FileUtils {
         fun getJsonFromAsset(fileName: String) : String? {
             val jsonString: String
             try {
-                jsonString = MainApplication.applicationContext().assets.open(fileName).bufferedReader().use { it.readText() }
+                jsonString = MainApplication.appContext.assets.open(fileName).bufferedReader().use { it.readText() }
             } catch (ioException: IOException) {
                 ioException.printStackTrace()
                 return null
