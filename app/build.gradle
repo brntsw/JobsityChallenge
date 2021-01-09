@@ -66,6 +66,9 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
 
+    //Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     kapt "androidx.databinding:databinding-common:4.1.1"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
