@@ -6,6 +6,7 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import bruno.com.jobsitychallenge.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 object ImageBindingAdapter {
@@ -17,6 +18,10 @@ object ImageBindingAdapter {
             .load(imgUri)
             .apply {
                 RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    .centerCrop()
+                    .dontAnimate()
+                    .dontTransform()
                     .placeholder(R.drawable.placeholder_image)
                     .error(R.drawable.broken_image)
             }.into(imgView)

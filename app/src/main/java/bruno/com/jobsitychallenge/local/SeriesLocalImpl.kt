@@ -10,25 +10,22 @@ import bruno.com.jobsitychallenge.utils.FileUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import java.lang.Error
 import java.lang.Exception
 
 class SeriesLocalImpl() : ISeriesRepository {
 
-    override suspend fun getSeries(request: IRequest<List<SerieResponse>>) {
-        withContext(Dispatchers.IO) {
-            try {
-                val jsonFileString = FileUtils.getJsonFromAsset("series.json")
+    override suspend fun getSeries() : Flow<List<SerieResponse>> {
+        return flow {
+            val jsonFileString = FileUtils.getJsonFromAsset("series.json")
 
-                val gson = Gson()
-                val listSeriesType = object : TypeToken<List<SerieResponse>>() {}.type
+            val gson = Gson()
+            val listSeriesType = object : TypeToken<List<SerieResponse>>() {}.type
 
-                request.onSuccess(gson.fromJson(jsonFileString, listSeriesType))
-            }
-            catch (e: Exception) {
-                request.onError(e.message ?: MainApplication.appContext.getString(R.string.general_error))
-            }
+            emit(gson.fromJson(jsonFileString, listSeriesType))
         }
     }
 

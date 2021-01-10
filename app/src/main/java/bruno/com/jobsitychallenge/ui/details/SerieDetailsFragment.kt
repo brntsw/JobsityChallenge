@@ -1,25 +1,20 @@
 package bruno.com.jobsitychallenge.ui.details
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import bruno.com.jobsitychallenge.R
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class SerieDetailsFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
+    var serieId: Long = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -27,17 +22,17 @@ class SerieDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_serie_details, container, false)
+        val view = inflater.inflate(R.layout.fragment_serie_details, container, false)
+
+        val args: SerieDetailsFragmentArgs by navArgs()
+        serieId = args.serieId
+        Log.d("Serie ID", "Serie Id is $serieId")
+
+        return view
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SerieDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance(param1: String, param2: String) = SerieDetailsFragment()
     }
 }

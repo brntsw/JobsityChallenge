@@ -14,7 +14,7 @@ import retrofit2.http.Query
 interface SeriesService {
 
     @GET("shows")
-    fun getSeries(@Query("page") pageNum: Int) : Response<List<SerieResponse>>
+    suspend fun getSeries(@Query("page") pageNum: Int) : List<SerieResponse>
 
     @GET("shows/{id}")
     fun getSerieDetails(@Path("id") id: Long) : Response<SerieResponse>
@@ -28,7 +28,7 @@ interface SeriesService {
     class Builder {
         fun makeSeriesService(okHttpClient: OkHttpClient) : SeriesService {
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://api.tvmaze.com/")
+                .baseUrl("https://api.tvmaze.com/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

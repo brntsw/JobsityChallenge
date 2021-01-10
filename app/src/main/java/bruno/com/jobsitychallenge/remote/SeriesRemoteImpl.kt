@@ -5,10 +5,14 @@ import bruno.com.jobsitychallenge.data.ISeriesRepository
 import bruno.com.jobsitychallenge.data.model.EpisodeResponse
 import bruno.com.jobsitychallenge.data.model.SerieResponse
 import bruno.com.jobsitychallenge.data.model.SerieSearchResponse
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-class SeriesRemoteImpl : ISeriesRepository {
-    override suspend fun getSeries(request: IRequest<List<SerieResponse>>) {
-        TODO("Not yet implemented")
+class SeriesRemoteImpl(private val seriesService: SeriesService) : ISeriesRepository {
+    override suspend fun getSeries(): Flow<List<SerieResponse>> {
+        return flow {
+            emit(seriesService.getSeries(1))
+        }
     }
 
     override suspend fun getSerieDetails(serieId: Long, request: IRequest<SerieResponse>) {

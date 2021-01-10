@@ -3,6 +3,7 @@ package bruno.com.jobsitychallenge
 import android.app.Application
 import android.content.Context
 import bruno.com.jobsitychallenge.di.applicationModule
+import bruno.com.jobsitychallenge.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -18,7 +19,7 @@ class MainApplication : Application() {
             androidLogger()
             androidContext(this@MainApplication)
             modules(
-                applicationModule
+                listOf(applicationModule, networkModule)
             )
         }
     }

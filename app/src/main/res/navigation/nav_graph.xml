@@ -18,5 +18,10 @@
         android:id="@+id/serieDetailsFragment"
         android:name="bruno.com.jobsitychallenge.ui.details.SerieDetailsFragment"
         android:label="fragment_serie_details"
-        tools:layout="@layout/fragment_serie_details" />
+        tools:layout="@layout/fragment_serie_details" >
+        <argument
+            android:name="serieId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
 </navigation>
