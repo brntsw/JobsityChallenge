@@ -29,51 +29,36 @@ class SeriesLocalImpl() : ISeriesRepository {
         }
     }
 
-    override suspend fun getSerieDetails(serieId: Long, request: IRequest<SerieResponse>) {
-        withContext(Dispatchers.IO) {
-            try{
-                val jsonFileString = FileUtils.getJsonFromAsset("serie_details.json")
+    override suspend fun getSerieDetails(serieId: Long) : Flow<SerieResponse> {
+        return flow {
+            val jsonFileString = FileUtils.getJsonFromAsset("serie_details.json")
 
-                val gson = Gson()
-                val serieType = object : TypeToken<SerieResponse>(){}.type
+            val gson = Gson()
+            val serieType = object : TypeToken<SerieResponse>(){}.type
 
-                request.onSuccess(gson.fromJson(jsonFileString, serieType))
-            }
-            catch (e: Exception) {
-                request.onError(e.message ?: MainApplication.appContext.getString(R.string.general_error))
-            }
+            emit(gson.fromJson(jsonFileString, serieType))
         }
     }
 
-    override suspend fun searchSerieByName(name: String, request: IRequest<List<SerieSearchResponse>>) {
-        withContext(Dispatchers.IO){
-            try{
-                val jsonFileString = FileUtils.getJsonFromAsset("serie_search.json")
+    override suspend fun searchSerieByName(name: String) : Flow<List<SerieSearchResponse>> {
+        return flow {
+            val jsonFileString = FileUtils.getJsonFromAsset("serie_search.json")
 
-                val gson = Gson()
-                val listSeriesType = object : TypeToken<List<SerieSearchResponse>>(){}.type
+            val gson = Gson()
+            val listSeriesType = object : TypeToken<List<SerieSearchResponse>>(){}.type
 
-                request.onSuccess(gson.fromJson(jsonFileString, listSeriesType))
-            }
-            catch (e: Exception) {
-                request.onError(e.message ?: MainApplication.appContext.getString(R.string.general_error))
-            }
+            emit(gson.fromJson(jsonFileString, listSeriesType))
         }
     }
 
-    override suspend fun getEpisodes(serieId: Long, request: IRequest<List<EpisodeResponse>>) {
-        withContext(Dispatchers.IO) {
-            try{
-                val jsonFileString = FileUtils.getJsonFromAsset("episodes250.json")
+    override suspend fun getEpisodes(serieId: Long) : Flow<List<EpisodeResponse>> {
+        return flow {
+            val jsonFileString = FileUtils.getJsonFromAsset("episodes250.json")
 
-                val gson = Gson()
-                val listEpisodesType = object : TypeToken<List<EpisodeResponse>>(){}.type
+            val gson = Gson()
+            val listEpisodesType = object : TypeToken<List<EpisodeResponse>>(){}.type
 
-                request.onSuccess(gson.fromJson(jsonFileString, listEpisodesType))
-            }
-            catch (e: Error) {
-                request.onError(e.message ?: MainApplication.appContext.getString(R.string.general_error))
-            }
+            emit(gson.fromJson(jsonFileString, listEpisodesType))
         }
     }
 }

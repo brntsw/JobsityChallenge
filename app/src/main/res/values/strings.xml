@@ -3,4 +3,6 @@
     <string name="app_title_list">Jobsity Challenge</string>
     <string name="general_error">There was an error in the request</string>
     <string name="img_desc_serie">Serie</string>
+    <string name="genres_holder">Genres: %s</string>
+    <string name="time_days_holder">%s - %s</string>
 </resources>

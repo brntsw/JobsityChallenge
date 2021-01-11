@@ -17,13 +17,13 @@ interface SeriesService {
     suspend fun getSeries(@Query("page") pageNum: Int) : List<SerieResponse>
 
     @GET("shows/{id}")
-    fun getSerieDetails(@Path("id") id: Long) : Response<SerieResponse>
+    suspend fun getSerieDetails(@Path("id") id: Long) : SerieResponse
 
     @GET("search/shows")
-    fun searchSerie(@Query("q") name: String) : Response<List<SerieSearchResponse>>
+    suspend fun searchSerie(@Query("q") name: String) : List<SerieSearchResponse>
 
     @GET("shows/{id}/episodes")
-    fun getEpisodes(@Path("id") id: Long) : Response<List<EpisodeResponse>>
+    suspend fun getEpisodes(@Path("id") id: Long) : List<EpisodeResponse>
 
     class Builder {
         fun makeSeriesService(okHttpClient: OkHttpClient) : SeriesService {

@@ -12,8 +12,8 @@ import com.bumptech.glide.request.RequestOptions
 object ImageBindingAdapter {
     @BindingAdapter("imageBitmap")
     @JvmStatic
-    fun loadImage(imgView: ImageView, urlPath: String) {
-        val imgUri = urlPath.toUri().buildUpon().scheme("https").build()
+    fun loadImage(imgView: ImageView, urlPath: String?) {
+        val imgUri = urlPath?.toUri()?.buildUpon()?.scheme("https")?.build()
         Glide.with(imgView.context)
             .load(imgUri)
             .apply {

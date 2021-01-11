@@ -15,18 +15,21 @@ class SeriesRemoteImpl(private val seriesService: SeriesService) : ISeriesReposi
         }
     }
 
-    override suspend fun getSerieDetails(serieId: Long, request: IRequest<SerieResponse>) {
-        TODO("Not yet implemented")
+    override suspend fun getSerieDetails(serieId: Long) : Flow<SerieResponse> {
+        return flow {
+            emit(seriesService.getSerieDetails(serieId))
+        }
     }
 
-    override suspend fun searchSerieByName(
-        name: String,
-        request: IRequest<List<SerieSearchResponse>>
-    ) {
-        TODO("Not yet implemented")
+    override suspend fun searchSerieByName(name: String) : Flow<List<SerieSearchResponse>> {
+        return flow {
+            emit(seriesService.searchSerie(name))
+        }
     }
 
-    override suspend fun getEpisodes(serieId: Long, request: IRequest<List<EpisodeResponse>>) {
-        TODO("Not yet implemented")
+    override suspend fun getEpisodes(serieId: Long) : Flow<List<EpisodeResponse>> {
+        return flow {
+            emit(seriesService.getEpisodes(serieId))
+        }
     }
 }

@@ -6,6 +6,6 @@ data class EpisodeResponse(
     val name: String,
     val number: Int,
     val season: Int,
-    val summary : String,
-    val image: ImageSerie
+    val summary : String?,
+    val image: ImageSerie?
 )
