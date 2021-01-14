@@ -5,4 +5,10 @@
     <string name="img_desc_serie">Serie</string>
     <string name="genres_holder">Genres: %s</string>
     <string name="time_days_holder">%s - %s</string>
+    <string name="season_description">Season</string>
+    <string name="season_holder">Season %d</string>
+    <string name="episode_description">Episode</string>
+    <string name="no_internet_connection">Oops! It seems you have no internet connection at the moment :/</string>
+    <string name="retry">Retry</string>
+    <string name="no_connection_description">No internet connection</string>
 </resources>

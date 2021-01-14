@@ -9,7 +9,7 @@
         android:id="@+id/seriesListFragment"
         android:name="bruno.com.jobsitychallenge.ui.list.SeriesListFragment"
         android:label="fragment_series_list"
-        tools:layout="@layout/fragment_series_list" >
+        tools:layout="@layout/fragment_series_list">
         <action
             android:id="@+id/action_seriesListFragment_to_serieDetailsFragment"
             app:destination="@id/serieDetailsFragment" />
@@ -18,10 +18,21 @@
         android:id="@+id/serieDetailsFragment"
         android:name="bruno.com.jobsitychallenge.ui.details.SerieDetailsFragment"
         android:label="fragment_serie_details"
-        tools:layout="@layout/fragment_serie_details" >
+        tools:layout="@layout/fragment_serie_details">
         <argument
             android:name="serieId"
-            app:argType="long"
-            android:defaultValue="-1L" />
+            android:defaultValue="-1L"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_serieDetailsFragment_to_episodesDialogFragment"
+            app:destination="@id/episodesDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodesDialogFragment"
+        android:name="bruno.com.jobsitychallenge.ui.episodes.EpisodesDialogFragment"
+        android:label="EpisodesDialogFragment">
+        <argument
+            android:name="episodes"
+            app:argType="bruno.com.jobsitychallenge.ui.model.EpisodeView[]" />
     </fragment>
 </navigation>

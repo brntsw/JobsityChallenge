@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -16,6 +17,8 @@ import bruno.com.jobsitychallenge.extension.setToolbar
 import bruno.com.jobsitychallenge.local.SeriesLocalImpl
 import bruno.com.jobsitychallenge.remote.SeriesRemoteImpl
 import bruno.com.jobsitychallenge.ui.adapter.SeriesAdapter
+import bruno.com.jobsitychallenge.ui.listener.ConnectionListener
+import bruno.com.jobsitychallenge.utils.ConnectivityUtils
 import com.facebook.shimmer.ShimmerFrameLayout
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -25,6 +28,9 @@ class SeriesListFragment : Fragment() {
     private lateinit var recyclerSeries: RecyclerView
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var shimmer: ShimmerFrameLayout
+    private lateinit var layout: View
+    private lateinit var layoutNoInternet: View
+    private lateinit var btRetry: TextView
 
     private lateinit var viewModel: SeriesListViewModel
     private lateinit var adapter: SeriesAdapter
@@ -55,6 +61,7 @@ class SeriesListFragment : Fragment() {
         toolbar = view.findViewById(R.id.toolbar)
         swipeRefresh = view.findViewById(R.id.swipe_refresh)
         shimmer = view.findViewById(R.id.shimmer_view)
+        layout = view.findViewById(R.id.layout)
 
         recyclerSeries.layoutManager = gridLayoutManager
         activity?.setToolbar(toolbar)

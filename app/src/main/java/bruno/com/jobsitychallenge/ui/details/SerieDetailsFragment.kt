@@ -17,6 +17,7 @@ import bruno.com.jobsitychallenge.databinding.FragmentSerieDetailsBinding
 import bruno.com.jobsitychallenge.extension.toHtml
 import bruno.com.jobsitychallenge.local.SeriesLocalImpl
 import bruno.com.jobsitychallenge.remote.SeriesRemoteImpl
+import bruno.com.jobsitychallenge.ui.adapter.SeasonsAdapter
 import bruno.com.jobsitychallenge.utils.SerieDetailsUtils
 import com.facebook.shimmer.ShimmerFrameLayout
 import org.koin.android.ext.android.inject
@@ -26,12 +27,8 @@ class SerieDetailsFragment : Fragment() {
 
     var serieId: Long = -1
 
-    private lateinit var toolbar: Toolbar
-    private lateinit var nestedView: NestedScrollView
-    private lateinit var recyclerSeasons: RecyclerView
-    private lateinit var shimmer: ShimmerFrameLayout
-
     private lateinit var viewModel: SerieDetailsViewModel
+    private lateinit var adapter: SeasonsAdapter
 
     private val seriesLocalImpl: SeriesLocalImpl by inject()
     private val seriesRemoteImpl: SeriesRemoteImpl by inject()
@@ -56,24 +53,22 @@ class SerieDetailsFragment : Fragment() {
     ): View {
         val binding = FragmentSerieDetailsBinding.inflate(inflater, container, false)
 
-        toolbar = binding.toolbar
-        nestedView = binding.nestedView
-        recyclerSeasons = binding.recyclerSeasons
-        shimmer = binding.shimmerView
-        recyclerSeasons.layoutManager = LinearLayoutManager(activity)
-        recyclerSeasons.isNestedScrollingEnabled = false
+        binding.recyclerSeasons.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerSeasons.isNestedScrollingEnabled = false
 
-        toolbar.title = "Serie details"
+        binding.toolbar.title = "Serie details"
 
         viewModel.serie.observe(viewLifecycleOwner, { serieDetails ->
             binding.serie = serieDetails
             binding.formattedGenres = SerieDetailsUtils.convertGenresToString(serieDetails.genres)
             binding.formattedTimeDays = SerieDetailsUtils.convertTimeAndDaysToString(serieDetails.time, serieDetails.daysAirs)
             serieDetails.summary?.toHtml()?.let { binding.summaryHtml = it }
+            adapter = SeasonsAdapter(serieDetails.episodesBySeason)
+            binding.recyclerSeasons.adapter = adapter
         })
 
         viewModel.loading.observe(viewLifecycleOwner, { displayLoading ->
-            viewModel.handleProgress(displayLoading, shimmer, nestedView)
+            viewModel.handleProgress(displayLoading, binding.shimmerView, binding.nestedView)
         })
 
         viewModel.errorMessage.observe(viewLifecycleOwner, { error ->

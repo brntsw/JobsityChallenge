@@ -36,7 +36,7 @@ class SerieDetailsMapper : Mapper<SerieDetailsResponse, SerieDetailsView> {
             val episodesOfSeason = mutableListOf<EpisodeView>()
 
             episodes.forEach { episode ->
-                if(season == episode.season) {
+                if((season + 1) == episode.season) {
                     episodesOfSeason.add(EpisodeView(
                         episode.id,
                         episode.name,
